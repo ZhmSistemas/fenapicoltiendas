@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConditionalNavbar from "@/components/ConditionalNavbar";
 import ConditionalFooter from "@/components/ConditionalFooter";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { Providers } from "./Providers";
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
           <ConditionalNavbar />
           {children}
           <ConditionalFooter />
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>
