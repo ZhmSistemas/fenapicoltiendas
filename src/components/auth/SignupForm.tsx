@@ -6,8 +6,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Eye, EyeOff } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 // Esquema de validación con Zod
 const registerSchema = z
@@ -65,6 +66,13 @@ export default function RegisterForm() {
   });
 
   const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      router.replace(session.user.isAdmin ? "/dashboard" : "/usuario/facturas");
+    }
+  }, [session, router]);
 
   const onSubmit = async (data: RegisterFormInputs) => {
     setIsLoading(true);

@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Eye, EyeOff } from "lucide-react";
-import { signIn, getSession } from "next-auth/react";
+import { signIn, getSession, useSession } from "next-auth/react";
 import { showToast } from "nextjs-toast-notify";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 // Esquema de validación con Zod
 const loginSchema = z.object({
@@ -39,6 +40,13 @@ export default function LoginForm() {
     },
   });
   const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      router.replace(session.user.isAdmin ? "/dashboard" : "/usuario/facturas");
+    }
+  }, [session, router]);
 
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);

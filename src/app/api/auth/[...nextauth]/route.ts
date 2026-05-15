@@ -5,32 +5,6 @@ import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/lib/models/UserModel";
 
-declare module "next-auth" {
-  interface User {
-    id: string;
-    isAdmin: boolean;
-    isUser: boolean;
-    whatsapp?: string;
-  }
-  interface Session {
-    user: User & {
-      id?: string;
-      isAdmin?: boolean;
-      isUser?: boolean;
-      whatsapp?: string;
-    };
-  }
-}
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    id?: string;
-    isAdmin?: boolean;
-    isUser?: boolean;
-    whatsapp?: string;
-  }
-}
-
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
