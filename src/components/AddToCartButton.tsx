@@ -25,7 +25,11 @@ export default function AddToCartButton({ productId, productName, stock, classNa
       setAdded(true)
       showToast.success(`${productName} agregado al carrito`)
       setTimeout(() => setAdded(false), 2000)
-    } catch {
+    } catch (err) {
+      if (err instanceof Error && err.message === 'not_authenticated') {
+        window.location.href = `/auth/login?callbackUrl=${encodeURIComponent(window.location.pathname)}`
+        return
+      }
       showToast.error('Error al agregar al carrito')
     } finally {
       setAdding(false)

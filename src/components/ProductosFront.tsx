@@ -194,7 +194,11 @@ export default function ProductosFront() {
                             try {
                               await addItem(product._id, 1)
                               showToast.success(`${product.name} agregado al carrito`)
-                            } catch {
+                            } catch (err) {
+                              if (err instanceof Error && err.message === 'not_authenticated') {
+                                window.location.href = `/auth/login?callbackUrl=${encodeURIComponent(window.location.pathname)}`
+                                return
+                              }
                               showToast.error('Error al agregar al carrito')
                             }
                           }}
