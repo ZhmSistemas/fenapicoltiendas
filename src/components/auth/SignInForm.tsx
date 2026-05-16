@@ -8,8 +8,8 @@ import { z } from "zod";
 import { Eye, EyeOff } from "lucide-react";
 import { signIn, getSession, useSession } from "next-auth/react";
 import { showToast } from "nextjs-toast-notify";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, Suspense } from "react";
 
 // Esquema de validación con Zod
 const loginSchema = z.object({
@@ -40,6 +40,7 @@ export default function LoginForm() {
     },
   });
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -71,7 +72,10 @@ export default function LoginForm() {
       // Obtener la sesión actualizada para comprobar si es Admin
       const session = await getSession();
 
-      if (session?.user?.isAdmin) {
+      const callbackUrl = searchParams.get("callbackUrl");
+      if (callbackUrl) {
+        router.push(callbackUrl);
+      } else if (session?.user?.isAdmin) {
         router.push("/dashboard");
       } else {
         router.push("/usuario/facturas");

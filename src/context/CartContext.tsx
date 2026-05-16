@@ -1,6 +1,8 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export type CartItemType = {
   productId: string
@@ -46,6 +48,8 @@ function saveItems(items: CartItemType[]) {
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { status } = useSession()
+  const router = useRouter()
   const [items, setItems] = useState<CartItemType[]>([])
   const [initialized, setInitialized] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
@@ -60,6 +64,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, initialized])
 
   const addItem = useCallback(async (productId: string, quantity = 1) => {
+    if (status !== 'authenticated') {
+      router.push(`/auth/login?callbackUrl=${encodeURIComponent(window.location.pathname)}`)
+      return
+    }
+
     const res = await fetch(`/api/products/${productId}`)
     if (!res.ok) throw new Error('Producto no encontrado')
 
@@ -85,7 +94,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }]
     })
     setCartOpen(true)
-  }, [])
+  }, [status, router])
 
   const removeItem = useCallback(async (productId: string) => {
     setItems(prev => prev.filter(i => i.productId !== productId))
