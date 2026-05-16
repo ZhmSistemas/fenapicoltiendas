@@ -15,9 +15,8 @@ import CartDrawer from "./CartDrawer";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const { data: session } = useSession();
-  const { itemCount } = useCart();
+  const { itemCount, cartOpen, setCartOpen } = useCart();
 
   return (
     <nav className="bg-linear-to-r from-green-600 via-emerald-600 to-teal-600 text-white relative z-10">

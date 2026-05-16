@@ -22,6 +22,8 @@ type CartContextType = {
   subtotal: number
   discount: number
   total: number
+  cartOpen: boolean
+  setCartOpen: (open: boolean) => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -46,6 +48,7 @@ function saveItems(items: CartItemType[]) {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItemType[]>([])
   const [initialized, setInitialized] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
 
   useEffect(() => {
     setItems(loadItems())
@@ -81,6 +84,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         quantity: Math.min(quantity, product.stock),
       }]
     })
+    setCartOpen(true)
   }, [])
 
   const removeItem = useCallback(async (productId: string) => {
@@ -124,6 +128,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         subtotal,
         discount: totalDiscount,
         total: discountTotal,
+        cartOpen,
+        setCartOpen,
       }}
     >
       {children}
