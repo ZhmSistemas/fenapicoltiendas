@@ -426,8 +426,8 @@ export default function ProductForm() {
                 src={previewUrl}
                 alt="Vista previa"
                 className="h-32 w-32 rounded-md object-cover"
-                width={128}
-                height={128}
+                width={256}
+                height={256}
               />
             </div>
           )}
