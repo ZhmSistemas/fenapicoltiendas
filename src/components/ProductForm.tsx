@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { showToast } from "nextjs-toast-notify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import Image from "next/image";
 
 const productSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -421,10 +422,12 @@ export default function ProductForm() {
           />
           {previewUrl && (
             <div className="mt-4">
-              <img
+              <Image
                 src={previewUrl}
                 alt="Vista previa"
                 className="h-32 w-32 rounded-md object-cover"
+                width={60}
+                height={60}
               />
             </div>
           )}
