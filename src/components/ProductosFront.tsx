@@ -145,15 +145,17 @@ export default function ProductosFront() {
 
                   <div className="relative z-10">
                     {product.image && (
-                      <div className="w-full h-64 rounded-xl overflow-hidden mb-5 bg-white">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover p-4 group-hover:scale-105 transition-transform duration-500"
-                          width={256}
-                          height={256}
-                        />
-                      </div>
+                      <Link href={`/productos/${product._id}`}>
+                        <div className="w-full h-64 rounded-xl overflow-hidden mb-5 bg-white">
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                            width={256}
+                            height={256}
+                          />
+                        </div>
+                      </Link>
                     )}
 
                     <div className={`w-14 h-14 rounded-xl bg-linear-to-br ${gradients[colorIdx]} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
