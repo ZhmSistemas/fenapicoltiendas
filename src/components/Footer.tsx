@@ -52,22 +52,12 @@ export default function Footer() {
                 <Link href="/" className="hover:text-emerald-400 transition-colors">
                   Inicio
                 </Link>
-              </li>
-              {/* <li>
-                <Link href="/usuario/facturas" className="hover:text-emerald-400 transition-colors">
-                  Mis facturas
-                </Link>
-              </li> */}
+              </li>              
               <li>
-                <Link href="/auth/login" className="hover:text-emerald-400 transition-colors">
-                  Iniciar sesión
+                <Link href="productos" className="hover:text-emerald-400 transition-colors">
+                  Productos
                 </Link>
-              </li>
-              <li>
-                <Link href="/auth/register" className="hover:text-emerald-400 transition-colors">
-                  Registrarse
-                </Link>
-              </li>
+              </li>              
             </ul>
           </div>
         </div>

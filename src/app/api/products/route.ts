@@ -7,13 +7,19 @@ export const GET = async (request: NextRequest) => {
     await dbConnect()
     const { searchParams } = new URL(request.url)
     const discounted = searchParams.get('discounted')
+    const home = searchParams.get('home')
 
     const query: Record<string, unknown> = {}
     if (discounted === 'true') {
       query.discount = { $gt: 0 }
     }
 
-    const products = await ProductModel.find(query).sort({ createdAt: -1 })
+    let products
+    if (home === 'true') {
+      products = await ProductModel.find().sort({ discount: -1, createdAt: -1 }).limit(6)
+    } else {
+      products = await ProductModel.find(query).sort({ createdAt: -1 })
+    }
     return Response.json(products, { status: 200 })
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : 'Error desconocido'

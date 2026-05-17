@@ -21,23 +21,23 @@ import { useCart } from '@/context/CartContext'
 import { showToast } from 'nextjs-toast-notify'
 
 export default function NaturalProducts() {
-  const [discountedProducts, setDiscountedProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const { addItem } = useCart()
 
   useEffect(() => {
-    const fetchDiscounted = async () => {
+    const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products?discounted=true')
+        const res = await fetch('/api/products?home=true')
         const data = await res.json()
-        setDiscountedProducts(Array.isArray(data) ? data : [])
+        setProducts(Array.isArray(data) ? data : [])
       } catch {
-        console.error('Error al cargar productos con descuento')
+        console.error('Error al cargar productos')
       } finally {
         setLoading(false)
       }
     }
-    fetchDiscounted()
+    fetchProducts()
   }, [])
 
   return (
@@ -119,17 +119,19 @@ export default function NaturalProducts() {
             <div className="flex justify-center py-16">
               <div className="w-12 h-12 border-4 border-gray-200 border-t-green-600 rounded-full animate-spin" />
             </div>
-          ) : discountedProducts.length === 0 ? (
+          ) : products.length === 0 ? (
             <div className="text-center py-16 bg-gray-50 rounded-2xl">
               <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 text-lg">Pronto tendremos ofertas especiales para ti</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {discountedProducts.map((product) => {
+              {products.map((product) => {
+                const discountValue = product.discount ?? 0
+                const hasDiscount = discountValue > 0
                 const discountPercent =
-                  product.discount && product.price > 0
-                    ? Math.round(((product.price - product.discount) / product.price) * 100)
+                  hasDiscount && product.price > 0
+                    ? Math.round(((product.price - discountValue) / product.price) * 100)
                     : 0
 
                 return (
@@ -137,24 +139,26 @@ export default function NaturalProducts() {
                     key={product._id}
                     className="group relative bg-white rounded-2xl border-2 border-green-100 p-6 hover:border-green-300 transition-all duration-500 hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1"
                   >
-                    {/* Online price badge */}
-                    <div className="absolute -top-3 -right-3 z-20">
-                      <div className="relative">
-                          <div className="bg-green-600 text-white font-black text-sm px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
-                          <Tag className="w-3.5 h-3.5" />
-                          -{discountPercent}%
+                    {/* Discount badge */}
+                    {hasDiscount && (
+                      <div className="absolute -top-3 -right-3 z-20">
+                        <div className="relative">
+                            <div className="bg-green-600 text-white font-black text-sm px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+                            <Tag className="w-3.5 h-3.5" />
+                            -{discountPercent}%
+                          </div>
+                          <div className="absolute -bottom-1 left-2 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-green-700" />
                         </div>
-                        <div className="absolute -bottom-1 left-2 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-green-700" />
                       </div>
-                    </div>
+                    )}
 
                     {/* Image */}
-                    <div className="relative h-52 rounded-xl overflow-hidden mb-5 bg-gray-100">
+                    <div className="relative h-64 rounded-xl overflow-hidden mb-5 bg-white">
                       {product.image ? (
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
@@ -175,21 +179,32 @@ export default function NaturalProducts() {
 
                       <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
 
-                      {/* Precio internet */}
-                      <div className="flex gap-6 mb-3">
-                        <div>
-                          <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">Precio Internet</span>
-                          <p className="text-3xl font-black text-green-600">
-                            {formatPrice(product.discount!)}
-                          </p>
+                      {/* Price */}
+                      {hasDiscount ? (
+                        <div className="flex gap-6 mb-3">
+                          <div>
+                            <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">Precio Internet</span>
+                            <p className="text-3xl font-black text-green-600">
+                              {formatPrice(discountValue)}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Precio en Tienda</span>
+                            <p className="text-2xl font-bold text-gray-700">
+                              {formatPrice(product.price)}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Precio en Tienda</span>
-                          <p className="text-2xl font-bold text-gray-700">
-                            {formatPrice(product.price)}
-                          </p>
+                      ) : (
+                        <div className="flex gap-6 mb-3">
+                          <div>
+                            <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">Precio</span>
+                            <p className="text-3xl font-black text-green-600">
+                              {formatPrice(product.price)}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       <div className="flex items-center gap-2 mb-4">
                         <Timer className="w-4 h-4 text-green-500/70" />
