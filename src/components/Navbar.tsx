@@ -10,7 +10,7 @@ import {
   LayoutDashboardIcon,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import CartDrawer from "./CartDrawer";
+
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -286,7 +286,6 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </nav>
   );
 };
