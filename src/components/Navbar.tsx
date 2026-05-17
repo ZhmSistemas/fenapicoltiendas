@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   }, [])
 
   return (
-    <nav className={`${scrolled ? 'bg-green-700/90 backdrop-blur-md' : 'bg-linear-to-r from-green-600 via-emerald-600 to-teal-600'} text-white sticky top-0 z-50 transition-all duration-300`}>
+    <nav className={`${scrolled ? 'bg-green-700/70 backdrop-blur-md' : 'bg-linear-to-r from-green-600 via-emerald-600 to-teal-600'} text-white sticky top-0 z-50 transition-all duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
