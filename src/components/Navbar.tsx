@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
   const { itemCount, cartOpen, setCartOpen } = useCart();
 
   return (
-    <nav className="bg-linear-to-r from-green-600 via-emerald-600 to-teal-600 text-white relative z-10">
+    <nav className="bg-linear-to-r from-green-600 via-emerald-600 to-teal-600 text-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
