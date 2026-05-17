@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import {
@@ -15,11 +15,19 @@ import CartDrawer from "./CartDrawer";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { data: session } = useSession();
   const { itemCount, cartOpen, setCartOpen } = useCart();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <nav className="bg-linear-to-r from-green-600 via-emerald-600 to-teal-600 text-white sticky top-0 z-50">
+    <nav className={`${scrolled ? 'bg-green-700/90 backdrop-blur-md' : 'bg-linear-to-r from-green-600 via-emerald-600 to-teal-600'} text-white sticky top-0 z-50 transition-all duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
