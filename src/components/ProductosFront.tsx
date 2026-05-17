@@ -150,8 +150,8 @@ export default function ProductosFront() {
                           src={product.image}
                           alt={product.name}
                           className="w-full h-full object-cover p-4 group-hover:scale-105 transition-transform duration-500"
-                          width={60}
-                          height={60}
+                          width={128}
+                          height={128}
                         />
                       </div>
                     )}
