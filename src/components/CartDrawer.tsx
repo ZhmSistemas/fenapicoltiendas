@@ -57,7 +57,7 @@ export default function CartDrawer({ open, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div
         ref={drawerRef}
         className="absolute right-0 top-0 h-full w-full md:w-full md:max-w-md shadow-2xl flex flex-col bg-white"
