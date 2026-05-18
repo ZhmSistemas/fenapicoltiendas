@@ -59,7 +59,7 @@ export default function NaturalProducts() {
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-0"
-            onLoadedMetadata={() => { if (videoRef.current) videoRef.current.playbackRate = 0.6 }}
+            onLoadedMetadata={() => { if (videoRef.current) videoRef.current.playbackRate = 0.5 }}
           >
             <source src="https://res.cloudinary.com/dwzhibduy/video/upload/v1779074818/result-1779074736207_ugddil.mp4" />
           </video>
