@@ -270,7 +270,7 @@ export default function InvoiceList() {
               onClick={() => setFilter("paid")}
               className={`rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap flex-shrink-0 ${
                 filter === "paid"
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-500 text-white"
                   : "bg-gray-200 text-gray-700"
               }`}
             >
@@ -562,7 +562,7 @@ export default function InvoiceList() {
                             <button
                               onClick={(e) => addPayment(invoice._id, e)}
                               disabled={addingPayment === invoice._id}
-                              className="flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 disabled:opacity-70 w-full sm:w-auto"
+                              className="flex items-center gap-2 rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 disabled:opacity-70 w-full sm:w-auto"
                             >
                               {addingPayment === invoice._id
                                 ? "Abonando..."

@@ -48,7 +48,7 @@ export default function ProductoDetalle({ id }: { id: string }) {
           <p className="text-gray-500 text-lg mb-6">Producto no encontrado</p>
           <button
             onClick={() => router.push('/productos')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-green-500 text-white font-semibold hover:bg-green-600 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             Volver a productos
@@ -147,7 +147,7 @@ export default function ProductoDetalle({ id }: { id: string }) {
               productId={product._id}
               productName={product.name}
               stock={product.stock}
-              className="w-full py-4 rounded-xl font-bold text-lg bg-linear-to-r from-green-500 to-emerald-500 text-white hover:shadow-2xl hover:shadow-green-500/50"
+              className="w-full py-4 rounded-xl font-bold text-lg bg-linear-to-r from-green-400 to-emerald-400 text-white hover:shadow-2xl hover:shadow-green-400/50"
             />
           </div>
         </div>

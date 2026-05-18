@@ -194,7 +194,7 @@ export default function CartDrawer({ open, onClose }: Props) {
             <Link
               href="/carrito"
               onClick={onClose}
-              className="block w-full py-3 rounded-xl font-bold text-center text-white bg-linear-to-r from-green-500 to-emerald-500 hover:shadow-lg transition-all duration-300"
+              className="block w-full py-3 rounded-xl font-bold text-center text-white bg-linear-to-r from-green-400 to-emerald-400 hover:shadow-lg transition-all duration-300"
             >
               Ver carrito completo
             </Link>

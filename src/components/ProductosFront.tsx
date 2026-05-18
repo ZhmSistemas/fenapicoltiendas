@@ -113,7 +113,7 @@ export default function ProductosFront() {
               const gradients = [
                 'from-emerald-500 to-teal-600',
                 'from-cyan-500 to-blue-600',
-                'from-green-500 to-emerald-600',
+                'from-green-400 to-emerald-500',
                 'from-violet-500 to-purple-600',
                 'from-amber-500 to-orange-600',
                 'from-rose-500 to-pink-600',

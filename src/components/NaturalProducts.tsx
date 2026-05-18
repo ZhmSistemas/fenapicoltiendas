@@ -238,7 +238,7 @@ export default function NaturalProducts() {
                       <div className="flex gap-2">
                         <Link
                           href={`/productos/${product._id}`}
-                          className="flex-1 py-3 rounded-xl font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3"
+                          className="flex-1 py-3 rounded-xl font-semibold text-white bg-green-500 hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3"
                         >
                           Ver Detalle
                           <ChevronRight className="w-4 h-4" />
@@ -257,7 +257,7 @@ export default function NaturalProducts() {
                                 showToast.error('Error al agregar al carrito')
                               }
                             }}
-                            className="py-3 px-5 rounded-xl font-semibold text-white bg-green-500 hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2"
+                            className="py-3 px-5 rounded-xl font-semibold text-white bg-green-400 hover:bg-green-500 transition-all duration-300 flex items-center justify-center gap-2"
                           >
                             <ShoppingCart className="w-4 h-4" />
                           </button>
@@ -336,7 +336,7 @@ export default function NaturalProducts() {
             </p>
             <Link
               href="/productos"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-lg font-bold text-lg bg-linear-to-r from-green-500 to-emerald-500 text-white hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center gap-2 px-10 py-4 rounded-lg font-bold text-lg bg-linear-to-r from-green-400 to-emerald-400 text-white hover:shadow-2xl hover:shadow-green-400/30 transition-all duration-300 transform hover:scale-105"
             >
               <Leaf className="w-5 h-5" />
               Explorar Catálogo

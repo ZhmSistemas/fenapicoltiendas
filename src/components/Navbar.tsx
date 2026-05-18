@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center">
             <Link
               href="/"
-              className="hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium"
+              className="hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium"
             >
               Fenapicol 
             </Link>
@@ -42,19 +42,19 @@ const Navbar: React.FC = () => {
             <div className="ml-10 flex items-baseline space-x-4">
               <Link
                 href="/"
-                className="hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium"
+                className="hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Inicio
               </Link>
               <Link
                 href="/nosotros"
-                className="hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium"
+                className="hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Nosotros
               </Link>
               <Link
                 href="/productos"
-                className="hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium "
+                className="hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium "
               >
                 Productos
               </Link>
@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
                 onClick={() => setCartOpen(true)}
                 className="relative px-3 mt-4 rounded-md text-sm font-medium"
               >
-                <ShoppingCart className="w-5 h-5 hover:text-green-300 hover:scale-125 transition-all cursor-pointer" />
+                <ShoppingCart className="w-5 h-5 hover:text-green-200 hover:scale-125 transition-all cursor-pointer" />
                 {itemCount > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 w-5 h-5 flex items-center hover:scale-125 transition-all justify-center bg-red-500 text-white text-xs font-bold rounded-full">
                     {itemCount > 9 ? "9+" : itemCount}
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
                 <div className="relative">
                   <button
                     onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex items-center hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors"
+                    className="flex items-center hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors"
                   >
                     {session.user?.name?.split(" ")[0]}
                     <svg
@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden relative">
             <button
               onClick={() => setCartOpen(true)}
-              className="p-2 rounded-md hover:bg-green-700"
+              className="p-2 rounded-md hover:bg-green-600"
             >
               <ShoppingCart className="w-5 h-5 hover:scale-125 transition-transform" />
               {itemCount > 0 && (
@@ -159,7 +159,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="bg-green-700 inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-green-800 focus:outline-none"
+              className="bg-green-600 inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-green-700 focus:outline-none"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >

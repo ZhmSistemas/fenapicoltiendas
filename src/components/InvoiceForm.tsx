@@ -551,7 +551,7 @@ export default function InvoiceForm() {
               <button
                 type="button"
                 onClick={addPayment}
-                className="flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 w-full sm:w-auto"
+                className="flex items-center gap-2 rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 w-full sm:w-auto"
               >
                 <DollarSign className="h-4 w-4" />
                 Abonar
