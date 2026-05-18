@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import {
   Leaf,
@@ -24,6 +24,7 @@ export default function NaturalProducts() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const { addItem } = useCart()
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,35 +52,47 @@ export default function NaturalProducts() {
         </div>
 
         <div className="relative px-6 sm:px-12 lg:px-20 py-20 lg:py-32">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 border border-green-300 mb-8">
-              <Leaf className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-700">Productos 100% Naturales</span>
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            onLoadedMetadata={() => { if (videoRef.current) videoRef.current.playbackRate = 0.4 }}
+          >
+            <source src="https://res.cloudinary.com/dwzhibduy/video/upload/v1779074818/result-1779074736207_ugddil.mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/60 z-[1]" />
+          <div className="max-w-6xl mx-auto text-center relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-800/70 border border-green-500 mb-8">
+              <Leaf className="w-4 h-4 text-green-300" />
+              <span className="text-sm font-semibold text-green-200">Productos 100% Naturales</span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-green-600 via-emerald-600 to-teal-600">
+              <span className="bg-clip-text text-transparent bg-linear-to-r from-green-300 via-emerald-300 to-teal-300">
                 Fenapicol Tiendas
               </span>
               <br />
-              <span className="text-gray-900">Naturaleza Pura</span>
+              <span className="text-white">Naturaleza Pura</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-12">
+            <p className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-12">
               Descubre nuestra línea de productos naturales seleccionados para tu bienestar integral
             </p>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-12">
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-300 mb-12">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-green-500" />
+                <ShieldCheck className="w-5 h-5 text-green-300" />
                 <span>Calidad Certificada</span>
               </div>
               <div className="flex items-center gap-2">
-                <Truck className="w-5 h-5 text-green-500" />
+                <Truck className="w-5 h-5 text-green-300" />
                 <span>Envío en 24h</span>
               </div>
               <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                <Star className="w-5 h-5 text-yellow-300 fill-yellow-300" />
                 <span>4.9 Estrellas</span>
               </div>
             </div>
