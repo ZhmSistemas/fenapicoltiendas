@@ -65,6 +65,14 @@ export const POST = async (request: NextRequest) => {
     )
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : 'Error desconocido'
+
+    if (err instanceof Error && 'code' in err && (err as { code: unknown }).code === 11000) {
+      return Response.json(
+        { message: 'El código ya está creado' },
+        { status: 409 }
+      )
+    }
+
     return Response.json(
       { message: errorMessage },
       { status: 500 }
